@@ -1,23 +1,22 @@
 #include "Tasks.h"
+#include <TaskScheduler.h>
 #include "FadeTask.h"
 #include "HourlyTask.h"
+#include "TimeSyncTask.h"
+#include "esp_log.h"
+
+static const char* TAG = "Tasks";
 
 Scheduler runner;
 
-// a két task deklarálása
-extern Task fadeTask;
-extern Task hourlyTask;
-
 void setupTasks() {
+  runner.init();
+  runner.addTask(tFade);
+  runner.addTask(tHourly);
+  runner.addTask(tTimeSync);
   setupFadeTask();
   setupHourlyTask();
-
-  runner.init();
-  runner.addTask(fadeTask);
-  runner.addTask(hourlyTask);
-
-  fadeTask.enable();
-  hourlyTask.enable();
+  setupTimeSyncTask();
 }
 
 void runTasks() {

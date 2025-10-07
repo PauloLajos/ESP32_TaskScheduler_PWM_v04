@@ -1,7 +1,6 @@
 #pragma once
-#include <TaskScheduler.h>
+#include <TaskSchedulerDeclarations.h>
 
-extern Task fadeTask;
+extern Task tFade;
 
 void setupFadeTask();
-void fadeStep();

@@ -1,7 +1,6 @@
 #pragma once
-#include <TaskScheduler.h>
+#include <TaskSchedulerDeclarations.h>
 
-extern Task hourlyTask;
+extern Task tHourly;
 
 void setupHourlyTask();
-void hourlyUpdate();

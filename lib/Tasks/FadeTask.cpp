@@ -1,21 +1,19 @@
 #include "FadeTask.h"
 #include "LedCtrl.h"
+#include "config.h"
+#include "esp_log.h"
 
-Task fadeTask(100, TASK_FOREVER, &fadeStep);
+static const char* TAG = "FadeTask";
 
-static int fadeValue = 0;
-static bool fadeUp = true;
+void fadeTaskCallback();
+Task tFade(FADE_INTERVAL, TASK_FOREVER, &fadeTaskCallback);
 
 void setupFadeTask() {
-  fadeTask.setInterval(100); // pl. 100 ms
+  // A tFade task már létre van hozva fent, csak engedélyezni kell
+  tFade.enable();
 }
 
-void fadeStep() {
-  if (fadeUp) fadeValue++;
-  else fadeValue--;
-
-  if (fadeValue >= 255) fadeUp = false;
-  if (fadeValue <= 0) fadeUp = true;
-
-  setLedBrightness(fadeValue / 255.0f);
+void fadeTaskCallback() {
+  updateFade();
+  ESP_LOGI(TAG, "Fade task executed");
 }

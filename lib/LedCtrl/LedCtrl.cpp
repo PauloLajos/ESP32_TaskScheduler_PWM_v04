@@ -1,6 +1,9 @@
 #include "LedCtrl.h"
 #include "config.h"
 #include <math.h>
+#include "esp_log.h"
+
+static const char* TAG = "LedCtrl";
 
 static float current[CHANNELS] = {0};
 static float target[CHANNELS] = {0};
@@ -23,7 +26,8 @@ void setLedTarget(uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 }
 
 static uint8_t gammaCorrect(float val) {
-  return powf(val / 255.0, GAMMA) * 255.0;
+  //return powf(val / 255.0, GAMMA) * 255.0;
+  return val;   // gamma korrekció kikapcsolva
 }
 
 void updateFade() {
@@ -32,5 +36,6 @@ void updateFade() {
       current[i] += (target[i] - current[i]) / (FADE_MINUTES * 4); // kb. 15 perc alatt
       ledcWrite(i, gammaCorrect(current[i]));
     }
+    ESP_LOGI(TAG, "LED %d: Current=%f, Target=%f, PWM=%d", i, current[i], target[i], gammaCorrect(current[i]));
   }
 }

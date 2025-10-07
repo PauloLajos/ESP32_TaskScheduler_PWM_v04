@@ -1,22 +1,25 @@
 #include "WifiManager.h"
 #include <WiFi.h>
 #include "config.h"
+#include "secrets.h"
+#include "esp_log.h"
+
+static const char* TAG = "WifiManager";
 
 static bool wifiConnected = false;
 
 void WiFiEventHandler(WiFiEvent_t event) {
   switch(event) {
     case SYSTEM_EVENT_STA_CONNECTED:
-      Serial.println("WiFi: Connected to AP");
+      ESP_LOGI(TAG, "WiFi: Connected to AP");
       break;
     case SYSTEM_EVENT_STA_GOT_IP:
       wifiConnected = true;
-      Serial.print("WiFi: IP address: ");
-      Serial.println(WiFi.localIP());
+      ESP_LOGI(TAG, "WiFi: IP address: %s", WiFi.localIP().toString().c_str());
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
       wifiConnected = false;
-      Serial.println("WiFi: Disconnected");
+      ESP_LOGW(TAG, "WiFi: Disconnected");
       WiFi.reconnect();
       break;
     default: break;
@@ -26,8 +29,8 @@ void WiFiEventHandler(WiFiEvent_t event) {
 void setupWiFi() {
   WiFi.mode(WIFI_STA);
   WiFi.onEvent(WiFiEventHandler);
-  WiFi.begin("YOUR_SSID", "YOUR_PASSWORD");
-  Serial.println("WiFi: Connecting...");
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  ESP_LOGI(TAG, "WiFi: Connecting...");
 }
 
 void loopWiFi() {
