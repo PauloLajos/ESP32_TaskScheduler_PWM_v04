@@ -64,5 +64,14 @@ const uint8_t hourly_brightness[24][CHANNELS] = {
   { 0,    0,   0,   0 },    //23 óra
 };
 
+// ThingSpeak küldési gyakoriság (15 másodperc a minimum)
+#define THINGSPEAK_INTERVAL 1*60*1000UL  // 1*60*1000UL = 1 perc
+
 // Szenzorok olvasási gyakorisága
-#define SENSORS_INTERVAL 5*60*1000UL  // 5 perc
+#define SENSORS_INTERVAL 1*60*1000UL  // 1*60*1000UL = 1 perc
+
+// DHT szenzor beállítások
+#define DHT_PIN 4          // DHT adat lába
+#define DHT_TYPE DHT22     // DHT11, DHT22, DHT21, AM2301
+#define DHT_INTERVAL 1*60*1000UL  // 1*60*1000UL = 1 perc
+

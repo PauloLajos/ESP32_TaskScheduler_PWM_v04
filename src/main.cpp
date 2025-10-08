@@ -4,6 +4,7 @@
 #include "LedCtrl.h"
 #include "Tasks.h"
 #include "Sensors.h"
+#include "ThingSpeakSend.h"
 #include "esp_log.h"
 
 static const char* TAG = "Main";
@@ -17,6 +18,7 @@ void setup() {
   setupTime();
   setupLeds();
   setupSensors();
+  setupThingspeakSend();
   setupTasks();
 }
 

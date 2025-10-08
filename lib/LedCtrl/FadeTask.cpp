@@ -15,5 +15,5 @@ void setupFadeTask(Scheduler& runner) {
 
 void fadeTaskCallback() {
   updateFade();
-  ESP_LOGI(TAG, "Fade task executed");
+  //ESP_LOGI(TAG, "Fade task executed");
 }

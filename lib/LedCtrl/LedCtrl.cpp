@@ -44,6 +44,6 @@ void updateFade() {
       pwmValue = constrain(pwmValue, 0, 255);
       ledcWrite(i, pwmValue);
     }
-    ESP_LOGI(TAG, "LED %d: Current=%f, Target=%f, PWM=%d", i, current[i], target[i], gammaCorrect(current[i]));
+    //ESP_LOGI(TAG, "LED %d: Current=%f, Target=%f, PWM=%d", i, current[i], target[i], gammaCorrect(current[i]));
   }
 }
