@@ -11,8 +11,8 @@ static int lastHour = -1;
 void hourlyBrightnessTaskCallback();
 Task tHourly(HOURLY_INTERVAL, TASK_FOREVER, &hourlyBrightnessTaskCallback);
 
-void setupHourlyTask() {
-  // A tHourly task már létre van hozva fent, csak engedélyezni kell
+void setupHourlyTask(Scheduler& runner) {
+  runner.addTask(tHourly);
   tHourly.enable();
 }
 

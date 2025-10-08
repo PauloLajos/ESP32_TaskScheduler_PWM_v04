@@ -11,12 +11,10 @@ Scheduler runner;
 
 void setupTasks() {
   runner.init();
-  runner.addTask(tFade);
-  runner.addTask(tHourly);
-  runner.addTask(tTimeSync);
-  setupFadeTask();
-  setupHourlyTask();
-  setupTimeSyncTask();
+  
+  setupFadeTask(runner);
+  setupHourlyTask(runner);
+  setupTimeSyncTask(runner);
 }
 
 void runTasks() {

@@ -3,4 +3,4 @@
 
 extern Task tHourly;
 
-void setupHourlyTask();
+void setupHourlyTask(Scheduler& runner);

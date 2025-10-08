@@ -13,6 +13,7 @@
 // PWM beállítás
 #define LEDC_TIMER_BITS 10
 #define LEDC_BASE_FREQ 5000
+#define PWM_RESOLUTION 10  // 10 bit (0-1023)
 
 // NTP szerver
 #define NTP_SERVER "pool.ntp.org"
@@ -23,14 +24,15 @@
 #define TIMESYNC_INTERVAL 24*60*60*1000UL  // 24 óra
 
 // Fade idő percben
-#define FADE_MINUTES 15
+#define FADE_MINUTES 60
 #define FADE_INTERVAL 1*1000
 #define HOURLY_INTERVAL 60*1000
 
 // Gamma korrekció
 #define GAMMA 2.2
 
-// 24 órás fényerő táblázat (0..255 között)
+// 24 órás fényerő táblázat (0..255 között) 
+// - az updateFade() hívásban átszámolódik a PWM_RESOLUTION értékre
 // Napfelkelte: 6:00–7:00
 // Nappal: 7:00–20:00
 // Naplemente: 19:00–20:00

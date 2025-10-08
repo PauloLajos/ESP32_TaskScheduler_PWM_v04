@@ -9,7 +9,8 @@ static const char* TAG = "TimeSyncTask";
 void timeSyncTaskCallback();
 Task tTimeSync(TIMESYNC_INTERVAL, TASK_FOREVER, &timeSyncTaskCallback); // 24 óránként
 
-void setupTimeSyncTask() {
+void setupTimeSyncTask(Scheduler& runner) {
+  runner.addTask(tTimeSync);
   tTimeSync.enable();
 }
 

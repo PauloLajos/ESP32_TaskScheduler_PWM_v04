@@ -33,10 +33,6 @@ void setupWiFi() {
   ESP_LOGI(TAG, "WiFi: Connecting...");
 }
 
-void loopWiFi() {
-  // opcionális reconnect logika
-}
-
 bool isWiFiConnected() {
   return wifiConnected;
 }

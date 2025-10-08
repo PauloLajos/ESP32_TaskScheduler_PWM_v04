@@ -2,4 +2,4 @@
 
 extern Task tTimeSync;
 
-void setupTimeSyncTask();
+void setupTimeSyncTask(Scheduler& runner);

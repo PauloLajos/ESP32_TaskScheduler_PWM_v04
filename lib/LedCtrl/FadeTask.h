@@ -3,4 +3,4 @@
 
 extern Task tFade;
 
-void setupFadeTask();
+void setupFadeTask(Scheduler& runner);

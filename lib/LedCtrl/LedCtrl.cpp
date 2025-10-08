@@ -31,10 +31,18 @@ static uint8_t gammaCorrect(float val) {
 }
 
 void updateFade() {
+  // Számoljuk ki, hány frissítés (lépés) történik a fade idő alatt
+  const float fadeSteps = (FADE_MINUTES * 60.0f) / FADE_INTERVAL;
+  // Minden csatornára külön-külön számoljuk a lépést
   for (int i = 0; i < CHANNELS; i++) {
     if (fabs(target[i] - current[i]) > 0.1) {
-      current[i] += (target[i] - current[i]) / (FADE_MINUTES * 4); // kb. 15 perc alatt
-      ledcWrite(i, gammaCorrect(current[i]));
+      current[i] += (target[i] - current[i]) / fadeSteps;
+      current[i] = constrain(current[i], 0.0f, 255.0f);
+
+      // Gamma korrekció és egész PWM értékre konvertálás
+      uint16_t pwmValue = (uint16_t)(gammaCorrect(current[i]) * ((1 << PWM_RESOLUTION) - 1) / 255.0f);
+      pwmValue = constrain(pwmValue, 0, 255);
+      ledcWrite(i, pwmValue);
     }
     ESP_LOGI(TAG, "LED %d: Current=%f, Target=%f, PWM=%d", i, current[i], target[i], gammaCorrect(current[i]));
   }
