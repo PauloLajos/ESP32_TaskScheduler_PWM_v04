@@ -63,3 +63,6 @@ const uint8_t hourly_brightness[24][CHANNELS] = {
   { 5,    2,   1,   5 },    //22 óra
   { 0,    0,   0,   0 },    //23 óra
 };
+
+// Szenzorok olvasási gyakorisága
+#define SENSORS_INTERVAL 5*60*1000UL  // 5 perc

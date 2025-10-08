@@ -3,6 +3,7 @@
 #include "TimeSync.h"
 #include "LedCtrl.h"
 #include "Tasks.h"
+#include "Sensors.h"
 #include "esp_log.h"
 
 static const char* TAG = "Main";
@@ -15,6 +16,7 @@ void setup() {
   setupWiFi();
   setupTime();
   setupLeds();
+  setupSensors();
   setupTasks();
 }
 
