@@ -5,6 +5,7 @@
 #include "TimeSyncTask.h"
 #include "SensorsTask.h"
 #include "ThingSpeakSendTask.h"
+#include "FlashLedTask.h"
 #include "esp_log.h"
 
 static const char* TAG = "Tasks";
@@ -14,6 +15,7 @@ Scheduler runner;
 void setupTasks() {
   runner.init();
   
+  setupFlashLedTask(runner);
   setupFadeTask(runner);
   setupHourlyTask(runner);
   setupTimeSyncTask(runner);

@@ -5,3 +5,5 @@ void setupSensors();
 void readSensors();
 float getLastTemperature();
 float getLastHumidity();
+float getLastWaterTemp();
+float getLastLDRValue();

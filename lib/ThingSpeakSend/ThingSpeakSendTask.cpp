@@ -1,5 +1,6 @@
 #include "ThingSpeakSendTask.h"
 #include "ThingSpeakSend.h"
+#include "FlashLedTask.h"
 #include "Sensors.h"
 #include "config.h"
 #include "esp_log.h"
@@ -12,12 +13,22 @@ Task tThingSpeakSend(THINGSPEAK_INTERVAL, TASK_FOREVER, &thingSpeakSendTaskCallb
 void thingSpeakSendTaskCallback() {
   float temperature = getLastTemperature();
   float humidity = getLastHumidity();
+  float waterTemp = getLastWaterTemp();
+  float ldrValue = getLastLDRValue();
+  // A fényerősség jelenleg nincs használva, így 0.0 értéket küldünk
+  float brightness = 0.0;
 
-  bool success = thingspeak_send(temperature, humidity);
-  ESP_LOGI(TAG,"Sending data → Temp: %.2f °C, Humidity: %.2f %%", temperature, humidity);
-
+  bool success = thingspeak_send(temperature, humidity, waterTemp, ldrValue, brightness);
+  
   if (success) {
     ESP_LOGI(TAG, "ThingSpeak task executed successfully");
+    //
+    //
+    //
+
+    startBlink(3, 200, 200);
+
+
   } else {
     ESP_LOGW(TAG, "ThingSpeak task execution failed");
   }

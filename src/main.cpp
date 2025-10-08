@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "WifiManager.h"
 #include "TimeSync.h"
+#include "FlashLed.h"
 #include "LedCtrl.h"
 #include "Tasks.h"
 #include "Sensors.h"
@@ -14,6 +15,7 @@ void setup() {
   delay(1000);
   ESP_LOGI(TAG, "System start...");
 
+  setupFlashLed();
   setupWiFi();
   setupTime();
   setupLeds();

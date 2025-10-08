@@ -1,4 +1,4 @@
-#include "DHTSensor.h"
+#include "DHT_Sensor.h"
 
 static DHT dht(0, 0);   // globális, inicializálás nélkül
 

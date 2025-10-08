@@ -75,3 +75,30 @@ const uint8_t hourly_brightness[24][CHANNELS] = {
 #define DHT_TYPE DHT22     // DHT11, DHT22, DHT21, AM2301
 #define DHT_INTERVAL 1*60*1000UL  // 1*60*1000UL = 1 perc
 
+//LDR szenzor beállítások
+#define LDR_PIN 34        // LDR analóg lába
+#define LDR_INTERVAL 1*60*1000UL  // 1 perc
+#define LDR_THRESHOLD 2000  // Küszöbérték a fényerő csökkentéséhez (0-4095 között)
+#define LDR_DIM_FACTOR 0.5  // Fényerő csökkentési tényező (0.0 - 1.0 között)
+#define LDR_BRIGHT_FACTOR 1.0  // Fényerő növelési tényező (1.0 - 2.0 között)
+#define LDR_HYSTERESIS 100  // hiszterézis érték a fényerő változtatásához
+
+// DS18B20 szenzor beállítások
+#define DS18B20_PIN 17      // DS18B20 adat lába
+#define DS18B20_INTERVAL 1*60*1000UL  // 1 perc
+#define DS18B20_RESOLUTION 12  // 9, 10, 11, vagy 12 bit
+#define DS18B20_PRECISION 0.1f  // A hőmérséklet olvasás pontossága (pl. 0.1f a 0.1°C pontosságért)
+#define DS18B20_MAX_RETRIES 3  // Maximális újrapróbálkozások száma olvasási hiba esetén
+#define DS18B20_RETRY_DELAY 200  // Várakozási idő újrapróbálkozás előtt (ms)
+#define DS18B20_CONVERSION_TIMEOUT 750  // Maximális idő a hőmérséklet konverzióra (ms)
+#define DS18B20_INVALID_TEMP -127.0f  // Érvénytelen hőmérséklet jelző érték
+#define DS18B20_MIN_TEMP -55.0f  // Minimális mérhető hőmérséklet
+#define DS18B20_MAX_TEMP 125.0f  // Maximális mérhető hőmérséklet
+#define DS18B20_ERROR_TEMP -1000.0f  // Hibát jelző hőmérséklet érték
+#define DS18B20_READ_INTERVAL 2000  // Várakozási idő két olvasás között (ms)
+#define DS18B20_SKIP_INVALID_READINGS true  // Érvénytelen olvasások kihagyása
+
+// Flash LED beállítások
+#define FLASHLED_INTERVAL 500   // Flash LED felvillanás időköze (ms)
+#define FLASHLED_DURATION 100   // Flash LED felvillanás hossza (ms)
+#define FLASHLED_PIN 5          // Flash LED lába 
