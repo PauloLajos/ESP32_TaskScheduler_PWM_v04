@@ -5,6 +5,9 @@
 
 static const char* TAG = "Sensors";
 
+float lastTemperature = 0.0;
+float lastHumidity = 0.0;
+
 void setupSensors() {
   // DHT szenzor indítás
   dht_begin(DHT_PIN, DHT_TYPE);
@@ -15,12 +18,16 @@ void readSensors() {
   // DHT szenzor olvasása
   float temperature = dht_readTemperature();
   float humidity = dht_readHumidity();
-  ESP_LOGI(TAG, "DHT Sensor - Temperature: %.2f °C, Humidity: %.2f %%", temperature, humidity);
+  
   if (!isnan(temperature) || !isnan(humidity)) {
     lastTemperature = temperature;
     lastHumidity = humidity;
+    ESP_LOGI(TAG, "DHT Sensor - Temperature: %.2f °C, Humidity: %.2f %%", lastTemperature, lastHumidity);
   } else {
     // Hiba a DHT22 szenzor olvasásakor
     ESP_LOGE(TAG, "Failed to read from DHT sensor!");
   }
 }
+
+float getLastTemperature() { return lastTemperature; }
+float getLastHumidity() { return lastHumidity; }

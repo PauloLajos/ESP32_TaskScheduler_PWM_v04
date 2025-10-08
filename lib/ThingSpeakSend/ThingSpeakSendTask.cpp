@@ -10,7 +10,12 @@ void thingSpeakSendTaskCallback();
 Task tThingSpeakSend(THINGSPEAK_INTERVAL, TASK_FOREVER, &thingSpeakSendTaskCallback);
 
 void thingSpeakSendTaskCallback() {
-  bool success = thingspeak_send(lastTemperature, lastHumidity);
+  float temperature = getLastTemperature();
+  float humidity = getLastHumidity();
+
+  bool success = thingspeak_send(temperature, humidity);
+  ESP_LOGI(TAG,"Sending data → Temp: %.2f °C, Humidity: %.2f %%", temperature, humidity);
+
   if (success) {
     ESP_LOGI(TAG, "ThingSpeak task executed successfully");
   } else {
